@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "logbook-cli"
+version = "0.5.1"
+description = "Command line tool to keep logs"
+authors = ["Maksudul Haque <saad.mk112@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/saadmk11/logbook-cli"
+repository = "https://github.com/saadmk11/logbook-cli"
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.scripts]
+logbook-cli = "logbook_cli.cli:app"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+colorama = "0.4.4"
+shellingham = "1.4.0"
+SQLAlchemy = "1.4.15"
+tabulate = "0.8.9"
+typer = "0.3.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

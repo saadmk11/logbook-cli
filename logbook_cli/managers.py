@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker
 
-from models import LogBook
-from utils import get_database_url
+from .models import LogBook
+from .utils import get_database_url
 
 
 class LogBookManager:
@@ -47,7 +47,7 @@ class LogBookManager:
 
     def update(self, id, description=None, log_datetime=None):
         if not description and not log_datetime:
-            return (False, 'You must provide "description" and/or "log_datetime"')
+            return (False, 'You must provide "--description" and/or "--date and --time"')
 
         log_entry = self.session.query(self.model).get(id)
 

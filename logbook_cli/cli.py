@@ -2,8 +2,8 @@ from datetime import datetime
 
 import typer
 
-from managers import LogBookManager
-from utils import get_table
+from .managers import LogBookManager
+from .utils import get_table
 
 
 app = typer.Typer()
@@ -165,7 +165,3 @@ def delete(id: int):
         typer.echo(
             typer.style(message, fg=typer.colors.RED, bold=True)
         )
-
-
-if __name__ == "__main__":
-    app()
