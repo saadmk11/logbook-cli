@@ -17,7 +17,7 @@ class LogBook(Base):
     __tablename__  = "log_book"
 
     id = Column(Integer, primary_key=True)
-    title = Column(String(320), nullable=False)
+    description = Column(String(320), nullable=False)
     log_datetime = Column(DateTime, nullable=False)
 
     created_at = Column(
