@@ -2,6 +2,7 @@ from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker
 
 from models import LogBook
+from utils import get_database_url
 
 
 class LogBookManager:
@@ -9,7 +10,7 @@ class LogBookManager:
     model = LogBook
 
     def __init__(self):
-        self.engine = create_engine('sqlite:///logbook.sqlite3', echo=False)
+        self.engine = create_engine(get_database_url(), echo=False)
         self.session = sessionmaker(bind=self.engine)()
 
         if not inspect(self.engine).has_table(self.model.__tablename__):

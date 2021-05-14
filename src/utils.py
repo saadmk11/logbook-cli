@@ -1,7 +1,11 @@
+import os
+from pathlib import Path
+
 from tabulate import tabulate
 
 
 def get_table(log_entries):
+    """Create table for Log Entries using tabulate"""
     table_data = [
         [
             entry.id,
@@ -26,3 +30,18 @@ def get_table(log_entries):
         headers=table_headers,
         tablefmt="pretty"
     )
+
+
+def get_database_url():
+    """Get Database URL from environment variable or "~/.logbook/" directory"""
+    LOG_BOOK_DATABASE_URL = os.environ.get('LOG_BOOK_DATABASE_URL')
+
+    if LOG_BOOK_DATABASE_URL:
+        return LOG_BOOK_DATABASE_URL
+
+    database_directory = str(Path.home() / '.logbook')
+
+    # create "~/.logbook/" directory if it does not exist
+    Path(database_directory).mkdir(parents=True, exist_ok=True)
+
+    return 'sqlite:///' + database_directory + '/logbook.sqlite3'
