@@ -39,8 +39,8 @@ $ logbook-cli add [OPTIONS] DESCRIPTION
 
 **Options**:
 
-* `-d, --date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]`: Date of the log entry  [default: 2021-05-14]
-* `-t, --time [%H:%M:%S|%I:%M %p]`: Time of the log entry  [default: 05:51 PM]
+* `-d, --date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]`: Date of the log entry  [default: **log entry date**]
+* `-t, --time [%H:%M:%S|%I:%M %p]`: Time of the log entry  [default: **log entry time**]
 * `--help`: Show this message and exit.
 
 ## `logbook-cli delete`

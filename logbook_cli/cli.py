@@ -9,8 +9,8 @@ from .utils import get_table
 app = typer.Typer(help="Command line tool to keep logs.")
 
 
-@app.command()
-def list():
+@app.command(name='list')
+def list_log_entries():
     """
     List all log entries in a table, limits upto 40 log entries.
     """
