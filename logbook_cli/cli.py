@@ -6,11 +6,14 @@ from .managers import LogBookManager
 from .utils import get_table
 
 
-app = typer.Typer()
+app = typer.Typer(help="Command line tool to keep logs.")
 
 
 @app.command()
 def list():
+    """
+    List all log entries in a table, limits upto 40 log entries.
+    """
     manager = LogBookManager()
     log_entries = manager.list()
 
@@ -27,7 +30,15 @@ def list():
 
 
 @app.command()
-def find(description_contains: str):
+def find(
+    description_contains: str = typer.Argument(
+        ...,
+        help="String that may match log entry description"
+    )
+):
+    """
+    List all log entries that match the argument.
+    """
     manager = LogBookManager()
     log_entries = manager.find(description_contains)
 
@@ -45,7 +56,15 @@ def find(description_contains: str):
 
 
 @app.command()
-def view(id: int):
+def view(
+    id: int = typer.Argument(
+        ...,
+        help="ID of the log entry"
+    )
+):
+    """
+    View a single log entry using it's ID.
+    """
     manager = LogBookManager()
     log_entry = manager.get(id)
 
@@ -68,14 +87,14 @@ def view(id: int):
         typer.echo(log_entry.description + '\n')
 
         created_at = (
-                typer.style("Created at: ", fg=typer.colors.BRIGHT_BLUE, bold=True) +
-                log_entry.created_at.strftime("%Y-%m-%d %I:%M %p")
+            typer.style("Created at: ", fg=typer.colors.BRIGHT_BLUE, bold=True) +
+            log_entry.created_at.strftime("%Y-%m-%d %I:%M %p")
         )
         typer.echo(created_at)
 
         updated_at = (
-                typer.style("Updated at: ", fg=typer.colors.BRIGHT_BLUE, bold=True) +
-                log_entry.updated_at.strftime("%Y-%m-%d %I:%M %p")
+            typer.style("Updated at: ", fg=typer.colors.BRIGHT_BLUE, bold=True) +
+            log_entry.updated_at.strftime("%Y-%m-%d %I:%M %p")
         )
         typer.echo(updated_at)
     else:
@@ -90,15 +109,23 @@ def view(id: int):
 
 @app.command()
 def add(
-    description: str,
+    description: str = typer.Argument(
+        ...,
+        help="Description of the log entry"
+    ),
     date: datetime = typer.Option(
-        datetime.now().strftime("%Y-%m-%d"), '--date', '-d'
+        datetime.now().strftime("%Y-%m-%d"), '--date', '-d',
+        help="Date of the log entry"
     ),
     time: datetime = typer.Option(
-        datetime.now().strftime("%H:%M:%S"), '--time', '-t',
-        formats=["%H:%M:%S", "%I:%M %p"]
+        datetime.now().strftime("%I:%M %p"), '--time', '-t',
+        formats=["%H:%M:%S", "%I:%M %p"],
+        help="Time of the log entry"
     )
 ):
+    """
+    Add a log entry to the logbook.
+    """
     log_entry_time = time.time()
     log_datetime = datetime.combine(date, log_entry_time)
 
@@ -117,18 +144,27 @@ def add(
 
 @app.command()
 def edit(
-    id: int,
+    id: int = typer.Argument(
+        ...,
+        help="ID of the log entry"
+    ),
     description: str = typer.Option(
-        "", '--description'
+        "", '--description',
+        help="New Description for the log entry"
     ),
     date: datetime = typer.Option(
-        None, '--date', '-d'
+        None, '--date', '-d',
+        help="New Date for the log entry"
     ),
     time: datetime = typer.Option(
         None, '--time', '-t',
-        formats=["%H:%M:%S", "%I:%M %p"]
+        formats=["%H:%M:%S", "%I:%M %p"],
+        help="New Time for the log entry"
     )
 ):
+    """
+    Update a log entry using it's ID.
+    """
     log_datetime = None
 
     if date and time:
@@ -153,7 +189,15 @@ def edit(
 
 
 @app.command()
-def delete(id: int):
+def delete(
+    id: int = typer.Argument(
+        ...,
+        help="ID of the log entry"
+    )
+):
+    """
+    Delete a log entry using it's ID.
+    """
     manager = LogBookManager()
     deleted, message = manager.delete(id)
 

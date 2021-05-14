@@ -19,7 +19,7 @@ class LogBookManager:
     def list(self):
         return self.session.query(self.model).order_by(
             self.model.log_datetime.desc()
-        ).limit(20).all()
+        ).limit(40).all()
 
     def find(self, description_contains):
         return self.session.query(self.model).filter(
