@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "logbook-cli"
-version = "0.5.1"
-description = "Command line tool to keep logs"
+version = "0.5.2"
+description = "Keep Your Daily Events Recorded on Your Logbook Using Command Line."
 authors = ["Maksudul Haque <saad.mk112@gmail.com>"]
 readme = "README.md"
 license = "MIT"

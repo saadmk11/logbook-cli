@@ -2,7 +2,7 @@
 
 # logbook-cli
 
-Keep Your Daily Events Recorded Using Command Line.
+Keep Your Daily Events Recorded on Your Logbook Using Command Line.
 
 
 ## How Does It Work?
