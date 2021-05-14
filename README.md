@@ -1,6 +1,9 @@
+![Logbook-cli-banner](https://user-images.githubusercontent.com/24854406/118286755-9fbe4980-b4f4-11eb-8c53-1af215343e8e.png)
+
 # logbook-cli
 
 Keep Your Daily Events Recorded Using Command Line.
+
 
 ## How Does It Work?
 
@@ -16,6 +19,7 @@ You can install `logbook-cli` by using `pip`:
 ```console
 pip install logbook-cli
 ```
+
 
 ## Configuration
 
@@ -197,3 +201,8 @@ $ logbook-cli view [OPTIONS] ID
 ```console
 $ logbook-cli view 1
 ```
+
+## Screenshot
+
+![logbook-cli-screenshot](https://user-images.githubusercontent.com/24854406/118287484-4dc9f380-b4f5-11eb-8e2a-e6bf0bf35942.png)
+
