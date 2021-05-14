@@ -1,0 +1,4 @@
+colorama==0.4.4
+shellingham==1.4.0
+SQLAlchemy==1.4.15
+typer==0.3.2
