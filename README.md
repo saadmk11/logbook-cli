@@ -1,8 +1,38 @@
-# `logbook-cli`
+# logbook-cli
 
-Command line tool to keep logs.
+Keep Your Daily Events Recorded Using Command Line.
 
-**Usage**:
+## How Does It Work?
+
+`logbook-cli` is created using python. It uses `typer` for the Command Line Interface
+and `SQLAlchemy` to interact with the database (`sqlite`).
+All the log entries are stored into the `sqlite` database.
+
+
+## Installation
+
+You can install `logbook-cli` by using `pip`:
+
+```console
+pip install logbook-cli
+```
+
+## Configuration
+
+`logbook-cli` stores the `sqlite` database in `~/.logbook/` directory by default.
+
+You can use `LOG_BOOK_DATABASE_URL` environment variable to use a different location.
+
+**Example:**
+
+```console
+export LOG_BOOK_DATABASE_URL=sqlite:///logbook.sqlite3
+```
+
+
+## How to use `logbook-cli`
+
+**Usage**
 
 ```console
 $ logbook-cli [OPTIONS] COMMAND [ARGS]...
@@ -23,7 +53,7 @@ $ logbook-cli [OPTIONS] COMMAND [ARGS]...
 * `list`: List all log entries in a table, limits upto...
 * `view`: View a single log entry using it's ID.
 
-## `logbook-cli add`
+### `logbook-cli add`
 
 Add a log entry to the logbook.
 
@@ -43,7 +73,13 @@ $ logbook-cli add [OPTIONS] DESCRIPTION
 * `-t, --time [%H:%M:%S|%I:%M %p]`: Time of the log entry  [default: **log entry time**]
 * `--help`: Show this message and exit.
 
-## `logbook-cli delete`
+**Example:**
+
+```console
+$ logbook-cli add -d "2021-05-10" -t "10:00 PM" "This is a Test Log Entry"
+```
+
+### `logbook-cli delete`
 
 Delete a log entry using it's ID.
 
@@ -61,7 +97,13 @@ $ logbook-cli delete [OPTIONS] ID
 
 * `--help`: Show this message and exit.
 
-## `logbook-cli edit`
+**Example:**
+
+```console
+$ logbook-cli delete 1
+```
+
+### `logbook-cli edit`
 
 Update a log entry using it's ID.
 
@@ -82,7 +124,13 @@ $ logbook-cli edit [OPTIONS] ID
 * `-t, --time [%H:%M:%S|%I:%M %p]`: New Time for the log entry
 * `--help`: Show this message and exit.
 
-## `logbook-cli find`
+**Example:**
+
+```console
+$ logbook-cli edit 1 -d "2021-05-10" -t "10:00 PM" --description "This is a Edited Test Log Entry"
+```
+
+### `logbook-cli find`
 
 List all log entries that match the argument.
 
@@ -100,7 +148,13 @@ $ logbook-cli find [OPTIONS] DESCRIPTION_CONTAINS
 
 * `--help`: Show this message and exit.
 
-## `logbook-cli list`
+**Example:**
+
+```console
+$ logbook-cli find "test"
+```
+
+### `logbook-cli list`
 
 List all log entries in a table, limits upto 40 log entries.
 
@@ -114,7 +168,13 @@ $ logbook-cli list [OPTIONS]
 
 * `--help`: Show this message and exit.
 
-## `logbook-cli view`
+**Example:**
+
+```console
+$ logbook-cli list
+```
+
+### `logbook-cli view`
 
 View a single log entry using it's ID.
 
@@ -131,3 +191,9 @@ $ logbook-cli view [OPTIONS] ID
 **Options**:
 
 * `--help`: Show this message and exit.
+
+**Example:**
+
+```console
+$ logbook-cli view 1
+```
